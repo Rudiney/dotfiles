@@ -7,12 +7,13 @@ setup and share dotfiles between machines.
 ## New machine install steps
 1. [brew](https://brew.sh)
 1. [Oh-my-zsh](https://ohmyz.sh/#install)
-1. brew packages: `brew install neovim ripgrep fd nvm rbenv gh stow`
+1. brew packages: `brew install neovim ripgrep fd nvm rbenv gh stow lazygit`
     - RipGrep
     - fd
     - [NeoVim](https://neovim.io)
     - [nvm](https://github.com/nvm-sh/nvm)
     - [rbenv](https://github.com/rbenv/rbenv)
+    - lazygit
     - gh
     - stow
 1. stow dotfiles: `stow zsh nvim vimplug`
