@@ -1,0 +1,26 @@
+theme "dracula"
+default_layout "compact"
+on_force_close "quit"
+default_mode "locked"
+
+ui {
+    pane_frames {
+        hide_session_name true
+        rounded_corners true
+    }
+}
+
+keybinds {
+    locked {
+        bind "†" { NewTab; } // Alt + t
+        bind "∂" { NewPane; } // Alt + d
+
+        bind "˙" { FocusPreviousPane; } // Alt + h
+        bind "¬" { FocusNextPane; } // Alt + l
+        bind "≈" { CloseFocus; } // Alt + x
+
+        bind "Alt Left" { GoToPreviousTab; }
+        bind "Alt Right" { GoToNextTab; }
+    }
+}
+
