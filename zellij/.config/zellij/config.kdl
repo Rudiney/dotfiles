@@ -1,5 +1,5 @@
-theme "dracula"
 default_layout "compact"
+theme "dracula-custom"
 on_force_close "quit"
 default_mode "locked"
 
@@ -24,3 +24,18 @@ keybinds {
     }
 }
 
+themes {
+   dracula-custom {
+        fg 248 248 242
+        bg 40 42 54
+        black 40 42 54
+        red 255 85 85
+        green 80 250 123
+        yellow 241 250 140
+        blue 98 114 164
+        magenta 255 121 198
+        cyan 139 233 253
+        white 255 255 255
+        orange 255 184 108
+    }
+}

@@ -1,4 +1,7 @@
-# import = [ ".config/alacritty/fonts/fira-mono.toml", "~/.config/alacritty/themes/tokyo-night.toml"]
+import = [
+  ".config/alacritty/fonts/monaspice.toml",
+  ".config/alacritty/themes/dracula.toml"
+]
 
 [window]
 decorations = "None"
@@ -6,8 +9,3 @@ startup_mode = "Maximized"
 
 [font]
 size = 14
-
-[keyboard]
-bindings = [
-  { key = "t", mods="Super", action = "ReceiveChar" } # unbind Super+T as the new tab shortcut
-]
