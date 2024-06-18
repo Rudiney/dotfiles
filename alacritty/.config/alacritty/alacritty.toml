@@ -1,11 +1,8 @@
-import = [
-  ".config/alacritty/fonts/monaspice.toml",
-  ".config/alacritty/themes/dracula.toml"
-]
+import = [ ".config/alacritty/fonts/monaspice.toml", ".config/alacritty/themes/tokyo-night.toml" ]
 
 [window]
 decorations = "None"
 startup_mode = "Maximized"
 
 [font]
-size = 14
+size = 15
