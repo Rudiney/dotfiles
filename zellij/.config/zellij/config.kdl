@@ -19,8 +19,10 @@ keybinds {
         bind "¬" { FocusNextPane; } // Alt + l
         bind "≈" { CloseFocus; } // Alt + x
 
-        bind "Alt Left" { GoToPreviousTab; }
-        bind "Alt Right" { GoToNextTab; }
+        bind "Alt Left" "“" { GoToPreviousTab; } // Alt + left or [
+        bind "Alt Right" "‘" { GoToNextTab; } // Alt + right or ]
+
+        bind "Ω" { ToggleFocusFullscreen; } // Alt + z
     }
 }
 
