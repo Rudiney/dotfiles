@@ -44,7 +44,12 @@ vim.call('plug#begin')
   Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
   Plug('mattn/emmet-vim')
   Plug('vim-test/vim-test')
+
+  -- Auto CTags management
   Plug('ludovicchabant/vim-gutentags')
+
+  -- Fancy tabs
+  Plug('akinsho/bufferline.nvim', { tag = '*' })
 
 vim.call('plug#end')
 
@@ -201,3 +206,16 @@ vim.g.user_emmet_leader_key = '<Leader>'
 --- enable emmet only on Normal and Visual mode
 vim.g.user_emmet_mode = 'nv'
 
+
+--  Bufferline
+require("bufferline").setup({
+  options = {
+    mode = "tabs",
+    offsets = {
+      filetype = "NvimTree",
+      text = "File Explorer",
+      text_align = "left",
+      separator = true
+    }
+  }
+})
