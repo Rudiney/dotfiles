@@ -44,6 +44,7 @@ vim.call('plug#begin')
   Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
   Plug('mattn/emmet-vim')
   Plug('vim-test/vim-test')
+  Plug('ludovicchabant/vim-gutentags')
 
 vim.call('plug#end')
 

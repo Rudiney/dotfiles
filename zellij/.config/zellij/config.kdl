@@ -17,7 +17,7 @@ keybinds {
 
         bind "˙" { FocusPreviousPane; } // Alt + h
         bind "¬" { FocusNextPane; } // Alt + l
-        bind "≈" { CloseFocus; } // Alt + x
+        bind "≈" "∑" { CloseFocus; } // Alt + x or w
 
         bind "Alt Left" "“" { GoToPreviousTab; } // Alt + left or [
         bind "Alt Right" "‘" { GoToNextTab; } // Alt + right or ]
