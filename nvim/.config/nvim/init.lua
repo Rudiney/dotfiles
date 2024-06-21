@@ -175,7 +175,7 @@ require('lualine').setup({
         'filename',
         file_status = true,
         newfile_status = false,
-        path = 4,
+        path = 1,
       }
     },
     lualine_x = { 'filetype' },
