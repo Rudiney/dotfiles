@@ -1,6 +1,6 @@
 # Rudi's personal dotfiles
 
-This repo follows the [GNO stow](https://www.gnu.org/software/stow/) naming convention to ealisy
+This repo follows the [GNU stow](https://www.gnu.org/software/stow/) naming convention to ealisy
 setup and share dotfiles between machines.
 
 
