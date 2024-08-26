@@ -38,18 +38,28 @@ vim.call('plug#begin')
 
   Plug('nvim-lualine/lualine.nvim')
 
+  -- Linter
+  -- Plug('dense-analysis/ale')
+
   Plug('markstory/vim-zoomwin')
   Plug('windwp/nvim-autopairs')
   Plug('zbirenbaum/copilot.lua')
-  Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
+  Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes pnpm install' })
   Plug('mattn/emmet-vim')
   Plug('vim-test/vim-test')
 
   -- Auto CTags management
-  Plug('ludovicchabant/vim-gutentags')
+  -- Plug('ludovicchabant/vim-gutentags')
 
   -- Fancy tabs
   Plug('akinsho/bufferline.nvim', { tag = '*' })
+
+  -- LSP
+  Plug('williamboman/mason.nvim')
+  Plug('williamboman/mason-lspconfig.nvim')
+  Plug('neovim/nvim-lspconfig')
+  Plug('hrsh7th/cmp-nvim-lsp')
+  Plug('hrsh7th/nvim-cmp')
 
 vim.call('plug#end')
 
@@ -72,9 +82,9 @@ vim.opt.termguicolors = true
 -- display extra whitespaces as dots
 vim.cmd("set list listchars=tab:»·,trail:·,nbsp:␣")
 
--- Drawn a line at 100 character mark
-vim.opt.textwidth = 100
-vim.opt.colorcolumn = "100"
+-- Drawn a line at 120 character mark
+vim.opt.textwidth = 120
+vim.opt.colorcolumn = "120"
 
 -- Display numbers and relative numbers
 vim.wo.number = true
@@ -90,7 +100,8 @@ vim.opt.cursorline = true
 
 -- Folding using identation
 vim.opt.foldmethod = 'indent'
-vim.opt.foldlevel =  10
+vim.opt.foldlevel = 10
+-- vim.opt.foldlevelstart = 2
 
 -- Handy save & quit shortcuts with <Leader> + s and <Leader> + q
 vim.keymap.set("n", "<Leader>s", ":w<CR>", {})
@@ -140,10 +151,10 @@ vim.cmd("colorscheme dracula")
 -- nvim-tree
 require("nvim-tree").setup({
   update_cwd = true,
-  update_focused_file = {
-    enable = true,
-    update_cwd = true,
-  },
+  -- update_focused_file = {
+  --   enable = true,
+  --   update_cwd = true,
+  -- },
   actions = {
     open_file = {
       quit_on_open = true,
@@ -169,12 +180,23 @@ vim.keymap.set('n', '<Leader>g', builtin.git_status, {})
 --- " to open registers 
 vim.keymap.set('n', '"', builtin.registers, {})
 
+--Format code with <Leader>+p
+-- vim.keymap.set('n', '<Leader>p', builtin.lsp_format, {})
+
 -- Open lazygit with <Leader>gg
 vim.keymap.set('n', '<Leader>gg', ':LazyGit<CR>', { silent = true, remap = false })
 
 -- Status line
 require('lualine').setup({
   sections = {
+    lualine_a = { 
+      -- display only the first letter of the mode
+      { 'mode', fmt = function(str) return str:sub(1,1) end }, 
+    },
+    lualine_b = {
+      -- display only the first 9 letters of the branch
+      { 'branch', fmt = function(str) return str:sub(1,9) end },
+    },
     lualine_c = {
       {
         'filename',
@@ -219,3 +241,55 @@ require("bufferline").setup({
     }
   }
 })
+
+-- LSPs stuff
+require("mason").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = { "lua_ls", "solargraph", "rubocop", "biome", "eslint", "tsserver" },
+})
+
+local cmp = require("cmp")
+cmp.setup({
+  completion = {
+    autocomplete = false,
+  },
+
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+
+  mapping = cmp.mapping.preset.insert({
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+  }),
+
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    -- { name = 'vsnip' }, -- For vsnip users.
+  }, {
+    { name = 'async_path' },
+    { name = 'buffer' },
+  })
+})
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lspconfig = require('lspconfig')
+lspconfig.lua_ls.setup{ capabilities = capabilities }
+lspconfig.biome.setup{ capabilities = capabilities }
+lspconfig.solargraph.setup{ capabilities = capabilities }
+lspconfig.rubocop.setup{ capabilities = capabilities }
+lspconfig.biome.setup{ capabilities = capabilities }
+lspconfig.eslint.setup{ capabilities = capabilities }
+lspconfig.tsserver.setup{ capabilities = capabilities }
+
+vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.code_action, {})
+vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, {})
+
