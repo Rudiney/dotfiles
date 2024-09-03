@@ -166,19 +166,19 @@ require("nvim-tree").setup({
 vim.keymap.set("n", "<Leader>n", ":NvimTreeFindFile<CR>", { silent = true, remap = false })
 
 -- Telescope shortcuts:
-local builtin = require('telescope.builtin')
+local telescope = require('telescope.builtin')
 --- Find files with <Leader>+y
-vim.keymap.set('n', '<Leader>y', builtin.find_files, {})
+vim.keymap.set('n', '<Leader>y', telescope.find_files, {})
 --- Live grep with <Leader>+f
-vim.keymap.set('n', '<Leader>f', builtin.live_grep, {})
+vim.keymap.set('n', '<Leader>f', telescope.live_grep, {})
 -- Live grep in the current directory with <Leader>+F
 vim.keymap.set('n', '<Leader>F', ':Telescope live_grep search_dirs=%:p:h<CR>', { silent = true, remap = false })
 --- buffers with <Leader>+b
-vim.keymap.set('n', '<Leader>b', builtin.buffers, {})
+vim.keymap.set('n', '<Leader>b', telescope.buffers, {})
 --- Git modified files with <Leader>+g
-vim.keymap.set('n', '<Leader>g', builtin.git_status, {})
+vim.keymap.set('n', '<Leader>g', telescope.git_status, {})
 --- " to open registers 
-vim.keymap.set('n', '"', builtin.registers, {})
+vim.keymap.set('n', '"', telescope.registers, {})
 
 --Format code with <Leader>+p
 -- vim.keymap.set('n', '<Leader>p', builtin.lsp_format, {})
@@ -292,4 +292,4 @@ vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.code_action, {})
 vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, {})
-
+vim.keymap.set('n', '<space>p', vim.lsp.buf.format, {})
