@@ -1,5 +1,6 @@
 local vim = vim
 local Plug = vim.fn['plug#']
+-- local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
 
 -- disable netrw nvim plugin as recommended by nvim-tree plugin
 vim.g.loaded_netrw       = 1
@@ -224,7 +225,7 @@ require("nvim-autopairs").setup()
 
 -- Emmet
 --- Trigger Emmet with <Leader>+,
-vim.g.user_emmet_leader_key = '<Leader>'
+-- vim.g.user_emmet_leader_key = '<Leader>'
 --- enable emmet only on Normal and Visual mode
 vim.g.user_emmet_mode = 'nv'
 
@@ -245,7 +246,7 @@ require("bufferline").setup({
 -- LSPs stuff
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "solargraph", "rubocop", "biome", "eslint", "tsserver" },
+  -- ensure_installed = { "lua_ls", "solargraph", "rubocop", "biome", "eslint", "tsserver" },
 })
 
 local cmp = require("cmp")
@@ -291,5 +292,17 @@ vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.code_action, {})
-vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, {})
-vim.keymap.set('n', '<space>p', vim.lsp.buf.format, {})
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
+vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, {})
+
+-- show and hide diagnostics (linter errors, etc)
+vim.keymap.set('n', '<leader>dh', vim.diagnostic.hide, {})
+vim.keymap.set('n', '<leader>ds', vim.diagnostic.show, {})
+-- enable diagnostics on save
+-- vim.cmd("autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()")
+-- autocmd({"BufWritePre"}, {
+--   pattern = {"*"},
+--   callback = function ()
+--     vim.lsp.buf.formatting_sync()
+--   end
+-- })
