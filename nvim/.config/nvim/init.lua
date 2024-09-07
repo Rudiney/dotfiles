@@ -61,6 +61,8 @@ vim.call('plug#begin')
   Plug('neovim/nvim-lspconfig')
   Plug('hrsh7th/cmp-nvim-lsp')
   Plug('hrsh7th/nvim-cmp')
+  Plug('dcampos/nvim-snippy')
+  Plug('dcampos/cmp-snippy')
 
 vim.call('plug#end')
 
@@ -251,6 +253,11 @@ require("mason-lspconfig").setup({
 
 local cmp = require("cmp")
 cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('snippy').expand_snippet(args.body)
+    end,
+  },
   completion = {
     autocomplete = false,
   },
@@ -269,11 +276,9 @@ cmp.setup({
   }),
 
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    -- { name = 'vsnip' }, -- For vsnip users.
-  }, {
-    { name = 'async_path' },
     { name = 'buffer' },
+    { name = 'async_path' },
+    { name = 'nvim_lsp' },
   })
 })
 
@@ -294,7 +299,6 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.code_action, {})
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
 vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, {})
-
 -- show and hide diagnostics (linter errors, etc)
 vim.keymap.set('n', '<leader>dh', vim.diagnostic.hide, {})
 vim.keymap.set('n', '<leader>ds', vim.diagnostic.show, {})
