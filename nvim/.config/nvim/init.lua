@@ -63,6 +63,7 @@ vim.call('plug#begin')
   Plug('hrsh7th/nvim-cmp')
   Plug('dcampos/nvim-snippy')
   Plug('dcampos/cmp-snippy')
+  Plug('hrsh7th/cmp-buffer')
 
 vim.call('plug#end')
 
