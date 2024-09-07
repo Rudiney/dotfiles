@@ -246,7 +246,7 @@ require("bufferline").setup({
 -- LSPs stuff
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "solargraph", "rubocop", "biome", "eslint", "ts_ls" },
+  ensure_installed = { "lua_ls", "solargraph", "rubocop", "biome", "eslint", "tsserver" },
 })
 
 local cmp = require("cmp")
