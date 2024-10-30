@@ -249,7 +249,7 @@ require("bufferline").setup({
 -- LSPs stuff
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "solargraph", "rubocop", "biome", "eslint", "tsserver" },
+  ensure_installed = { "lua_ls", "solargraph", "rubocop", "biome", "eslint", "ts_ls" },
 })
 
 local cmp = require("cmp")
@@ -291,7 +291,7 @@ lspconfig.solargraph.setup{ capabilities = capabilities }
 lspconfig.rubocop.setup{ capabilities = capabilities }
 lspconfig.biome.setup{ capabilities = capabilities }
 lspconfig.eslint.setup{ capabilities = capabilities }
-lspconfig.tsserver.setup{ capabilities = capabilities }
+lspconfig.ts_ls.setup{ capabilities = capabilities }
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
