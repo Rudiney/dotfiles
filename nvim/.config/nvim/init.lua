@@ -45,7 +45,8 @@ vim.call('plug#begin')
   Plug('markstory/vim-zoomwin')
   Plug('windwp/nvim-autopairs')
   Plug('zbirenbaum/copilot.lua')
-  Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes pnpm install' })
+  -- Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes pnpm install' })
+  Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
   Plug('mattn/emmet-vim')
   Plug('vim-test/vim-test')
 
@@ -64,6 +65,9 @@ vim.call('plug#begin')
   Plug('dcampos/nvim-snippy')
   Plug('dcampos/cmp-snippy')
   Plug('hrsh7th/cmp-buffer')
+
+  Plug('stevearc/quicker.nvim')
+  Plug('rachartier/tiny-glimmer.nvim')
 
 vim.call('plug#end')
 
@@ -166,6 +170,29 @@ require("nvim-tree").setup({
   },
 })
 
+--quicker
+require("quicker").setup({
+  keys = {
+    {
+      ">",
+      function()
+        require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
+      end,
+      desc = "Expand quickfix context",
+    },
+    {
+      "<",
+      function()
+        require("quicker").collapse()
+      end,
+      desc = "Collapse quickfix context",
+    },
+  },
+})
+
+--
+require("tiny-glimmer").setup()
+
 -- Find current file in tree with <Leader>+n
 vim.keymap.set("n", "<Leader>n", ":NvimTreeFindFile<CR>", { silent = true, remap = false })
 
@@ -249,7 +276,7 @@ require("bufferline").setup({
 -- LSPs stuff
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "solargraph", "rubocop", "biome", "eslint", "tsserver" },
+  ensure_installed = { "lua_ls", "solargraph", "rubocop", "biome", "eslint", "ts_ls" },
 })
 
 local cmp = require("cmp")
@@ -291,7 +318,9 @@ lspconfig.solargraph.setup{ capabilities = capabilities }
 lspconfig.rubocop.setup{ capabilities = capabilities }
 lspconfig.biome.setup{ capabilities = capabilities }
 lspconfig.eslint.setup{ capabilities = capabilities }
-lspconfig.tsserver.setup{ capabilities = capabilities }
+lspconfig.ts_ls.setup{ capabilities = capabilities }
+lspconfig.ruby_lps = {}
+lspconfig.marksman = {}
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
