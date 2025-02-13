@@ -1,5 +1,5 @@
-local vim = vim
-local Plug = vim.fn['plug#']
+local vim                = vim
+local Plug               = vim.fn['plug#']
 -- local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
 
 -- disable netrw nvim plugin as recommended by nvim-tree plugin
@@ -7,67 +7,67 @@ vim.g.loaded_netrw       = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.call('plug#begin')
-  -- Themes
-  Plug('sheerun/vim-polyglot')
-  -- Plug('tanvirtin/monokai.nvim')
-  -- Plug('ofirgall/ofirkai.nvim')
-  -- Plug('carakan/new-railscasts-theme')
-  -- Plug('sickill/vim-monokai')
-  Plug('Mofiqul/dracula.nvim')
+-- Themes
+Plug('sheerun/vim-polyglot')
+-- Plug('tanvirtin/monokai.nvim')
+-- Plug('ofirgall/ofirkai.nvim')
+-- Plug('carakan/new-railscasts-theme')
+-- Plug('sickill/vim-monokai')
+Plug('Mofiqul/dracula.nvim')
 
-  -- change the default behavior of yank on deleting
-  Plug('tpope/vim-repeat')
-  Plug('svermeulen/vim-easyclip')
+-- change the default behavior of yank on deleting
+Plug('tpope/vim-repeat')
+Plug('svermeulen/vim-easyclip')
 
-  -- Fancy icons
-  Plug('nvim-tree/nvim-web-devicons')
-  Plug('nvim-tree/nvim-tree.lua')
+-- Fancy icons
+Plug('nvim-tree/nvim-web-devicons')
+Plug('nvim-tree/nvim-tree.lua')
 
-  -- telescope (file finder)
-  Plug('nvim-lua/plenary.nvim')
-  Plug('nvim-telescope/telescope.nvim', { tag = '0.1.6' })
-  Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
+-- telescope (file finder)
+Plug('nvim-lua/plenary.nvim')
+Plug('nvim-telescope/telescope.nvim', { tag = '0.1.6' })
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
-  -- Tpope's magic
-  Plug('tpope/vim-sensible')
-  Plug('tpope/vim-endwise')
-  Plug('tpope/vim-surround')
-  Plug('tpope/vim-commentary')
-  Plug('tpope/vim-rails')
+-- Tpope's magic
+Plug('tpope/vim-sensible')
+Plug('tpope/vim-endwise')
+Plug('tpope/vim-surround')
+Plug('tpope/vim-commentary')
+Plug('tpope/vim-rails')
 
-  Plug('kdheepak/lazygit.nvim')
+Plug('kdheepak/lazygit.nvim')
 
-  Plug('nvim-lualine/lualine.nvim')
+Plug('nvim-lualine/lualine.nvim')
 
-  -- Linter
-  -- Plug('dense-analysis/ale')
+-- Linter
+-- Plug('dense-analysis/ale')
 
-  Plug('markstory/vim-zoomwin')
-  Plug('windwp/nvim-autopairs')
-  Plug('zbirenbaum/copilot.lua')
-  -- Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes pnpm install' })
-  Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
-  Plug('mattn/emmet-vim')
-  Plug('vim-test/vim-test')
+Plug('markstory/vim-zoomwin')
+Plug('windwp/nvim-autopairs')
+Plug('zbirenbaum/copilot.lua')
+-- Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes pnpm install' })
+Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
+Plug('mattn/emmet-vim')
+Plug('vim-test/vim-test')
 
-  -- Auto CTags management
-  -- Plug('ludovicchabant/vim-gutentags')
+-- Auto CTags management
+-- Plug('ludovicchabant/vim-gutentags')
 
-  -- Fancy tabs
-  Plug('akinsho/bufferline.nvim', { tag = '*' })
+-- Fancy tabs
+Plug('akinsho/bufferline.nvim', { tag = '*' })
 
-  -- LSP
-  Plug('williamboman/mason.nvim')
-  Plug('williamboman/mason-lspconfig.nvim')
-  Plug('neovim/nvim-lspconfig')
-  Plug('hrsh7th/cmp-nvim-lsp')
-  Plug('hrsh7th/nvim-cmp')
-  Plug('dcampos/nvim-snippy')
-  Plug('dcampos/cmp-snippy')
-  Plug('hrsh7th/cmp-buffer')
+-- LSP
+Plug('williamboman/mason.nvim')
+Plug('williamboman/mason-lspconfig.nvim')
+Plug('neovim/nvim-lspconfig')
+Plug('hrsh7th/cmp-nvim-lsp')
+Plug('hrsh7th/nvim-cmp')
+Plug('dcampos/nvim-snippy')
+Plug('dcampos/cmp-snippy')
+Plug('hrsh7th/cmp-buffer')
 
-  Plug('stevearc/quicker.nvim')
-  Plug('rachartier/tiny-glimmer.nvim')
+Plug('stevearc/quicker.nvim')
+Plug('rachartier/tiny-glimmer.nvim')
 
 vim.call('plug#end')
 
@@ -127,22 +127,22 @@ vim.keymap.set("n", "˚", ":m .-2<CR>==", { silent = true, remap = false })
 vim.keymap.set("i", "˚", "<Esc>:m .-2<CR>==gi", {})
 
 -- use Ctrl + hjkl to move between windows
-vim.keymap.set({"n", "v", "i"}, "<C-j>", "<C-w>j", {})
-vim.keymap.set({"n", "v", "i"}, "<C-k>", "<C-w>k", {})
-vim.keymap.set({"n", "v", "i"}, "<C-h>", "<C-w>h", {})
-vim.keymap.set({"n", "v", "i"}, "<C-l>", "<C-w>l", {})
+vim.keymap.set({ "n", "v", "i" }, "<C-j>", "<C-w>j", {})
+vim.keymap.set({ "n", "v", "i" }, "<C-k>", "<C-w>k", {})
+vim.keymap.set({ "n", "v", "i" }, "<C-h>", "<C-w>h", {})
+vim.keymap.set({ "n", "v", "i" }, "<C-l>", "<C-w>l", {})
 
 -- <F7> run the current rspec test file
 -- vim.keymap.set({"n", "v", "i"}, "<F7>", ":terminal bin/rspec % <CR>", {})
 -- <F8> run the current rspec test at the current line!
 -- vim.keymap.set({"n", "v", "i"}, "<F8>", ":terminal echo 'bin/rspec '.expand('%').':'.line('.') <CR>", {})
--- <F9> run the current test file 
+-- <F9> run the current test file
 --
 -- Setting the test runner as 'm' to run the test with minitest
 vim.cmd("let g:test#ruby#minitest#executable = 'm'")
-vim.keymap.set({"n", "v", "i"}, "<F9>", ":TestFile <CR>", {})
+vim.keymap.set({ "n", "v", "i" }, "<F9>", ":TestFile <CR>", {})
 -- <F10> run the current test at the current line!
-vim.keymap.set({"n", "v", "i"}, "<F10>", ":TestNearest <CR>", {})
+vim.keymap.set({ "n", "v", "i" }, "<F10>", ":TestNearest <CR>", {})
 
 -- Rubocop shortcuts
 vim.keymap.set("n", "<Leader>r", ":!rubocop % <CR>", {})
@@ -197,7 +197,18 @@ require("tiny-glimmer").setup()
 vim.keymap.set("n", "<Leader>n", ":NvimTreeFindFile<CR>", { silent = true, remap = false })
 
 -- Telescope shortcuts:
+require("telescope").setup({
+  -- pickers = {
+  --   find_files = { theme = "dropdown", },
+  --   live_grep = { theme = "dropdown", },
+  --   buffers = { theme = "dropdown", },
+  --   git_status = { theme = "dropdown", },
+  --   registers = { theme = "dropdown", },
+  -- }
+})
+
 local telescope = require('telescope.builtin')
+
 --- Find files with <Leader>+y
 vim.keymap.set('n', '<Leader>y', telescope.find_files, {})
 --- Live grep with <Leader>+f
@@ -208,7 +219,7 @@ vim.keymap.set('n', '<Leader>F', ':Telescope live_grep search_dirs=%:p:h<CR>', {
 vim.keymap.set('n', '<Leader>b', telescope.buffers, {})
 --- Git modified files with <Leader>+g
 vim.keymap.set('n', '<Leader>g', telescope.git_status, {})
---- " to open registers 
+--- " to open registers
 vim.keymap.set('n', '"', telescope.registers, {})
 
 --Format code with <Leader>+p
@@ -220,13 +231,13 @@ vim.keymap.set('n', '<Leader>gg', ':LazyGit<CR>', { silent = true, remap = false
 -- Status line
 require('lualine').setup({
   sections = {
-    lualine_a = { 
+    lualine_a = {
       -- display only the first letter of the mode
-      { 'mode', fmt = function(str) return str:sub(1,1) end }, 
+      { 'mode', fmt = function(str) return str:sub(1, 1) end },
     },
     lualine_b = {
       -- display only the first 9 letters of the branch
-      { 'branch', fmt = function(str) return str:sub(1,9) end },
+      { 'branch', fmt = function(str) return str:sub(1, 9) end },
     },
     lualine_c = {
       {
@@ -237,7 +248,7 @@ require('lualine').setup({
       }
     },
     lualine_x = { 'filetype' },
-    lualine_y = { },
+    lualine_y = {},
   },
 })
 
@@ -312,13 +323,13 @@ cmp.setup({
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
-lspconfig.lua_ls.setup{ capabilities = capabilities }
-lspconfig.biome.setup{ capabilities = capabilities }
-lspconfig.solargraph.setup{ capabilities = capabilities }
-lspconfig.rubocop.setup{ capabilities = capabilities }
-lspconfig.biome.setup{ capabilities = capabilities }
-lspconfig.eslint.setup{ capabilities = capabilities }
-lspconfig.ts_ls.setup{ capabilities = capabilities }
+lspconfig.lua_ls.setup { capabilities = capabilities }
+lspconfig.biome.setup { capabilities = capabilities }
+lspconfig.solargraph.setup { capabilities = capabilities }
+lspconfig.rubocop.setup { capabilities = capabilities }
+lspconfig.biome.setup { capabilities = capabilities }
+lspconfig.eslint.setup { capabilities = capabilities }
+lspconfig.ts_ls.setup { capabilities = capabilities }
 lspconfig.ruby_lps = {}
 lspconfig.marksman = {}
 
@@ -326,12 +337,12 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.code_action, {})
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
 vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, {})
 -- show and hide diagnostics (linter errors, etc)
 vim.keymap.set('n', '<leader>dh', vim.diagnostic.hide, {})
 vim.keymap.set('n', '<leader>ds', vim.diagnostic.show, {})
+vim.keymap.set('n', '<leader>k', vim.diagnostic.open_float, {})
 -- enable diagnostics on save
 -- vim.cmd("autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()")
 -- autocmd({"BufWritePre"}, {
