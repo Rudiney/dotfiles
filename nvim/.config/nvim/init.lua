@@ -1,10 +1,10 @@
-local vim                = vim
-local Plug               = vim.fn['plug#']
+local vim  = vim
+local Plug = vim.fn['plug#']
 -- local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
 
 -- disable netrw nvim plugin as recommended by nvim-tree plugin
-vim.g.loaded_netrw       = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw       = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 vim.call('plug#begin')
 -- Themes
@@ -21,12 +21,13 @@ Plug('svermeulen/vim-easyclip')
 
 -- Fancy icons
 Plug('nvim-tree/nvim-web-devicons')
-Plug('nvim-tree/nvim-tree.lua')
+-- Plug('nvim-tree/nvim-tree.lua')
 
 -- telescope (file finder)
 Plug('nvim-lua/plenary.nvim')
-Plug('nvim-telescope/telescope.nvim', { tag = '0.1.6' })
-Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+-- Plug('nvim-telescope/telescope.nvim', { tag = '0.1.6' })
+Plug('folke/snacks.nvim')
+-- Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
 -- Tpope's magic
 Plug('tpope/vim-sensible')
@@ -35,7 +36,7 @@ Plug('tpope/vim-surround')
 Plug('tpope/vim-commentary')
 Plug('tpope/vim-rails')
 
-Plug('kdheepak/lazygit.nvim')
+-- Plug('kdheepak/lazygit.nvim')
 
 Plug('nvim-lualine/lualine.nvim')
 
@@ -157,18 +158,18 @@ vim.keymap.set("n", "<Leader>R", ":!rubocop -A % <CR>", {})
 vim.cmd("colorscheme dracula")
 
 -- nvim-tree
-require("nvim-tree").setup({
-  update_cwd = true,
-  -- update_focused_file = {
-  --   enable = true,
-  --   update_cwd = true,
-  -- },
-  actions = {
-    open_file = {
-      quit_on_open = true,
-    },
-  },
-})
+-- require("nvim-tree").setup({
+-- update_cwd = true,
+-- update_focused_file = {
+--   enable = true,
+--   update_cwd = true,
+-- },
+-- actions = {
+--   open_file = {
+--     quit_on_open = true,
+--   },
+-- },
+-- })
 
 --quicker
 require("quicker").setup({
@@ -193,40 +194,81 @@ require("quicker").setup({
 --
 require("tiny-glimmer").setup()
 
--- Find current file in tree with <Leader>+n
-vim.keymap.set("n", "<Leader>n", ":NvimTreeFindFile<CR>", { silent = true, remap = false })
-
--- Telescope shortcuts:
-require("telescope").setup({
-  -- pickers = {
-  --   find_files = { theme = "dropdown", },
-  --   live_grep = { theme = "dropdown", },
-  --   buffers = { theme = "dropdown", },
-  --   git_status = { theme = "dropdown", },
-  --   registers = { theme = "dropdown", },
-  -- }
+require("snacks").setup({
+  explorer = {
+    replace_netrw = true,
+  },
+  -- config for all pickers
+  picker = {
+    hidden = true,
+    win = {
+      input = {
+        keys = {
+          ["<c-t>"] = { "edit_tab", mode = { "i", "n" } },
+        }
+      }
+    },
+    sources = {
+      -- config for the explorer picker only
+      explorer = {
+        auto_close = true,
+        win = {
+          list = {
+            keys = {
+              ["o"] = "confirm",
+              ["<c-t>"] = { "edit_tab", mode = { "i", "n" } },
+            }
+          }
+        }
+      },
+      files = {
+        hidden = true
+      }
+    }
+  }
 })
 
-local telescope = require('telescope.builtin')
+-- Find current file in tree with <Leader>+n
+-- vim.keymap.set("n", "<Leader>n", ":NvimTreeFindFile<CR>", { silent = true, remap = false })
+vim.keymap.set("n", "<Leader>n", Snacks.explorer.reveal, {})
+
+-- Telescope shortcuts:
+-- require("telescope").setup({
+-- pickers = {
+--   find_files = { theme = "dropdown", },
+--   live_grep = { theme = "dropdown", },
+--   buffers = { theme = "dropdown", },
+--   git_status = { theme = "dropdown", },
+--   registers = { theme = "dropdown", },
+-- }
+-- })
+
+-- local telescope = require('telescope.builtin')
 
 --- Find files with <Leader>+y
-vim.keymap.set('n', '<Leader>y', telescope.find_files, {})
+-- vim.keymap.set('n', '<Leader>y', telescope.find_files, {})
+vim.keymap.set('n', '<Leader>y', Snacks.picker.files, {})
 --- Live grep with <Leader>+f
-vim.keymap.set('n', '<Leader>f', telescope.live_grep, {})
+-- vim.keymap.set('n', '<Leader>f', telescope.live_grep, {})
+vim.keymap.set('n', '<Leader>f', Snacks.picker.grep, {})
 -- Live grep in the current directory with <Leader>+F
-vim.keymap.set('n', '<Leader>F', ':Telescope live_grep search_dirs=%:p:h<CR>', { silent = true, remap = false })
+-- vim.keymap.set('n', '<Leader>F', ':Telescope live_grep search_dirs=%:p:h<CR>', { silent = true, remap = false })
 --- buffers with <Leader>+b
-vim.keymap.set('n', '<Leader>b', telescope.buffers, {})
+-- vim.keymap.set('n', '<Leader>b', telescope.buffers, {})
+vim.keymap.set('n', '<Leader>b', Snacks.picker.buffers, {})
 --- Git modified files with <Leader>+g
-vim.keymap.set('n', '<Leader>g', telescope.git_status, {})
+-- vim.keymap.set('n', '<Leader>g', telescope.git_status, {})
+vim.keymap.set('n', '<Leader>g', Snacks.picker.git_status, {})
 --- " to open registers
-vim.keymap.set('n', '"', telescope.registers, {})
+-- vim.keymap.set('n', '"', telescope.registers, {})
+vim.keymap.set('n', '"', Snacks.picker.registers, {})
 
 --Format code with <Leader>+p
 -- vim.keymap.set('n', '<Leader>p', builtin.lsp_format, {})
 
 -- Open lazygit with <Leader>gg
-vim.keymap.set('n', '<Leader>gg', ':LazyGit<CR>', { silent = true, remap = false })
+-- vim.keymap.set('n', '<Leader>gg', ':LazyGit<CR>', { silent = true, remap = false })
+vim.keymap.set('n', '<Leader>gg', Snacks.lazygit.open, {})
 
 -- Status line
 require('lualine').setup({
@@ -351,3 +393,4 @@ vim.keymap.set('n', '<leader>k', vim.diagnostic.open_float, {})
 --     vim.lsp.buf.formatting_sync()
 --   end
 -- })
+--
