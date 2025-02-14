@@ -164,6 +164,11 @@ require("snacks").setup({
   -- config for all pickers
   picker = {
     hidden = true,
+    formatters = {
+      file = {
+        truncate = 100
+      }
+    },
     win = {
       input = {
         keys = {
