@@ -1,12 +1,8 @@
 local vim  = vim
 local Plug = vim.fn['plug#']
--- local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
-
--- disable netrw nvim plugin as recommended by nvim-tree plugin
--- vim.g.loaded_netrw       = 1
--- vim.g.loaded_netrwPlugin = 1
 
 vim.call('plug#begin')
+
 -- Themes
 Plug('sheerun/vim-polyglot')
 -- Plug('tanvirtin/monokai.nvim')
@@ -21,13 +17,10 @@ Plug('svermeulen/vim-easyclip')
 
 -- Fancy icons
 Plug('nvim-tree/nvim-web-devicons')
--- Plug('nvim-tree/nvim-tree.lua')
 
 -- telescope (file finder)
 Plug('nvim-lua/plenary.nvim')
--- Plug('nvim-telescope/telescope.nvim', { tag = '0.1.6' })
 Plug('folke/snacks.nvim')
--- Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
 -- Tpope's magic
 Plug('tpope/vim-sensible')
@@ -36,23 +29,14 @@ Plug('tpope/vim-surround')
 Plug('tpope/vim-commentary')
 Plug('tpope/vim-rails')
 
--- Plug('kdheepak/lazygit.nvim')
-
 Plug('nvim-lualine/lualine.nvim')
-
--- Linter
--- Plug('dense-analysis/ale')
 
 Plug('markstory/vim-zoomwin')
 Plug('windwp/nvim-autopairs')
 Plug('zbirenbaum/copilot.lua')
--- Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes pnpm install' })
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
 Plug('mattn/emmet-vim')
 Plug('vim-test/vim-test')
-
--- Auto CTags management
--- Plug('ludovicchabant/vim-gutentags')
 
 -- Fancy tabs
 Plug('akinsho/bufferline.nvim', { tag = '*' })
@@ -133,12 +117,6 @@ vim.keymap.set({ "n", "v", "i" }, "<C-k>", "<C-w>k", {})
 vim.keymap.set({ "n", "v", "i" }, "<C-h>", "<C-w>h", {})
 vim.keymap.set({ "n", "v", "i" }, "<C-l>", "<C-w>l", {})
 
--- <F7> run the current rspec test file
--- vim.keymap.set({"n", "v", "i"}, "<F7>", ":terminal bin/rspec % <CR>", {})
--- <F8> run the current rspec test at the current line!
--- vim.keymap.set({"n", "v", "i"}, "<F8>", ":terminal echo 'bin/rspec '.expand('%').':'.line('.') <CR>", {})
--- <F9> run the current test file
---
 -- Setting the test runner as 'm' to run the test with minitest
 vim.cmd("let g:test#ruby#minitest#executable = 'm'")
 vim.keymap.set({ "n", "v", "i" }, "<F9>", ":TestFile <CR>", {})
@@ -156,20 +134,6 @@ vim.keymap.set("n", "<Leader>R", ":!rubocop -A % <CR>", {})
 -- require('new-railscasts-theme').setup()
 -- vim.cmd("color monokai")
 vim.cmd("colorscheme dracula")
-
--- nvim-tree
--- require("nvim-tree").setup({
--- update_cwd = true,
--- update_focused_file = {
---   enable = true,
---   update_cwd = true,
--- },
--- actions = {
---   open_file = {
---     quit_on_open = true,
---   },
--- },
--- })
 
 --quicker
 require("quicker").setup({
@@ -191,7 +155,6 @@ require("quicker").setup({
   },
 })
 
---
 require("tiny-glimmer").setup()
 
 require("snacks").setup({
@@ -229,38 +192,18 @@ require("snacks").setup({
 })
 
 -- Find current file in tree with <Leader>+n
--- vim.keymap.set("n", "<Leader>n", ":NvimTreeFindFile<CR>", { silent = true, remap = false })
 vim.keymap.set("n", "<Leader>n", Snacks.explorer.reveal, {})
 
--- Telescope shortcuts:
--- require("telescope").setup({
--- pickers = {
---   find_files = { theme = "dropdown", },
---   live_grep = { theme = "dropdown", },
---   buffers = { theme = "dropdown", },
---   git_status = { theme = "dropdown", },
---   registers = { theme = "dropdown", },
--- }
--- })
-
--- local telescope = require('telescope.builtin')
-
 --- Find files with <Leader>+y
--- vim.keymap.set('n', '<Leader>y', telescope.find_files, {})
 vim.keymap.set('n', '<Leader>y', Snacks.picker.files, {})
 --- Live grep with <Leader>+f
--- vim.keymap.set('n', '<Leader>f', telescope.live_grep, {})
 vim.keymap.set('n', '<Leader>f', Snacks.picker.grep, {})
 -- Live grep in the current directory with <Leader>+F
--- vim.keymap.set('n', '<Leader>F', ':Telescope live_grep search_dirs=%:p:h<CR>', { silent = true, remap = false })
 --- buffers with <Leader>+b
--- vim.keymap.set('n', '<Leader>b', telescope.buffers, {})
 vim.keymap.set('n', '<Leader>b', Snacks.picker.buffers, {})
 --- Git modified files with <Leader>+g
--- vim.keymap.set('n', '<Leader>g', telescope.git_status, {})
 vim.keymap.set('n', '<Leader>g', Snacks.picker.git_status, {})
 --- " to open registers
--- vim.keymap.set('n', '"', telescope.registers, {})
 vim.keymap.set('n', '"', Snacks.picker.registers, {})
 
 --Format code with <Leader>+p
@@ -385,12 +328,3 @@ vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, {})
 vim.keymap.set('n', '<leader>dh', vim.diagnostic.hide, {})
 vim.keymap.set('n', '<leader>ds', vim.diagnostic.show, {})
 vim.keymap.set('n', '<leader>k', vim.diagnostic.open_float, {})
--- enable diagnostics on save
--- vim.cmd("autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()")
--- autocmd({"BufWritePre"}, {
---   pattern = {"*"},
---   callback = function ()
---     vim.lsp.buf.formatting_sync()
---   end
--- })
---
