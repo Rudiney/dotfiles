@@ -251,7 +251,7 @@ require("nvim-autopairs").setup()
 
 -- Emmet
 --- Trigger Emmet with <Leader>+,
--- vim.g.user_emmet_leader_key = '<Leader>'
+vim.g.user_emmet_leader_key = '<Leader>'
 --- enable emmet only on Normal and Visual mode
 vim.g.user_emmet_mode = 'nv'
 
