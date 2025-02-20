@@ -184,6 +184,7 @@ require("snacks").setup({
           list = {
             keys = {
               ["o"] = "confirm",
+              ["<c-o>"] = "explorer_open",
               ["<c-t>"] = { "edit_tab", mode = { "i", "n" } },
             }
           }
