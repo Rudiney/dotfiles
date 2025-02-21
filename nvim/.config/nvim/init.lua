@@ -3,8 +3,9 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
--- Themes
 Plug('sheerun/vim-polyglot')
+
+-- Themes
 -- Plug('tanvirtin/monokai.nvim')
 -- Plug('ofirgall/ofirkai.nvim')
 -- Plug('carakan/new-railscasts-theme')
@@ -133,6 +134,15 @@ vim.keymap.set("n", "<Leader>R", ":!rubocop -A % <CR>", {})
 -- require('monokai').setup { palette = require('monokai').soda }
 -- require('new-railscasts-theme').setup()
 -- vim.cmd("color monokai")
+-- vim.cmd("colorscheme new-railscasts")
+
+require('dracula').setup({
+  colors = {
+    -- File names in explorer was too transparent
+    nontext = "#A4A6A6",
+  },
+})
+
 vim.cmd("colorscheme dracula")
 
 --quicker
