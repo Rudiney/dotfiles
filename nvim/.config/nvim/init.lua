@@ -190,6 +190,7 @@ require("snacks").setup({
       -- config for the explorer picker only
       explorer = {
         auto_close = true,
+        focus = "list",
         win = {
           list = {
             keys = {
@@ -221,6 +222,8 @@ vim.keymap.set('n', '<Leader>b', Snacks.picker.buffers, {})
 vim.keymap.set('n', '<Leader>g', Snacks.picker.git_status, {})
 --- " to open registers
 vim.keymap.set('n', '"', Snacks.picker.registers, {})
+-- Marks with <Leader>+m
+vim.keymap.set('n', '<Leader>m', Snacks.picker.marks, {})
 
 --Format code with <Leader>+p
 -- vim.keymap.set('n', '<Leader>p', builtin.lsp_format, {})
@@ -237,8 +240,11 @@ require('lualine').setup({
       { 'mode', fmt = function(str) return str:sub(1, 1) end },
     },
     lualine_b = {
+      -- display the lasd folder of the current working directory:
+      function() return vim.fn.fnamemodify(vim.fn.getcwd(), ':t') end
+
       -- display only the first 9 letters of the branch
-      { 'branch', fmt = function(str) return str:sub(1, 9) end },
+      -- { 'branch', fmt = function(str) return str:sub(1, 9) end },
     },
     lualine_c = {
       {
