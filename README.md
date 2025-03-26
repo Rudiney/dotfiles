@@ -7,15 +7,17 @@ setup and share dotfiles between machines.
 ## New machine install steps
 1. [brew](https://brew.sh)
 1. [Oh-my-zsh](https://ohmyz.sh/#install)
-1. brew packages: `brew install neovim ripgrep fd nvm rbenv gh stow lazygit`
+1. [Monaspace NERD font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Monaspace.zip)
+1. brew packages: `brew install neovim ripgrep fd nvm rbenv gh stow lazygit zellij`
+    - [NeoVim](https://neovim.io)
     - RipGrep
     - fd
-    - [NeoVim](https://neovim.io)
     - [nvm](https://github.com/nvm-sh/nvm)
     - [rbenv](https://github.com/rbenv/rbenv)
-    - lazygit
     - gh
-    - stow
+    - [stow](https://www.gnu.org/software/stow/)
+    - lazygit
+    - zellij
 1. stow dotfiles: `stow zsh nvim vimplug`
 1. install a node version: `nvm install v20`
 1. install yarn with `corepack enable`
@@ -24,3 +26,10 @@ setup and share dotfiles between machines.
 1. install ruby->neovim lib: `gem install neovim`
 1. open `nvim` and run `:PlugInstall`
     > run `:checkhealth` for a health report
+1. Set `zellij` on autostart. Add this to `.zshrc`
+```
+# Auto starts zellij
+eval "$(zellij setup --generate-auto-start zsh)"
+
+```
+
