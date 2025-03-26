@@ -34,7 +34,7 @@ Plug('nvim-lualine/lualine.nvim')
 
 Plug('markstory/vim-zoomwin')
 Plug('windwp/nvim-autopairs')
-Plug('zbirenbaum/copilot.lua')
+-- Plug('zbirenbaum/copilot.lua')
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
 Plug('mattn/emmet-vim')
 Plug('vim-test/vim-test')
@@ -83,7 +83,7 @@ vim.opt.colorcolumn = "120"
 -- Display numbers and relative numbers
 vim.wo.number = true
 vim.wo.numberwidth = 5
-vim.wo.rnu = true
+-- vim.wo.rnu = true
 
 -- Open new split panes to right and bottom, which feels more natural
 vim.opt.splitbelow = true
@@ -259,15 +259,15 @@ require('lualine').setup({
   },
 })
 
-require("copilot").setup({
-  suggestion = {
-    auto_trigger = true,
-    keymap = {
-      accept = "<TAB>",
-      reject = "<ESC>",
-    }
-  }
-})
+-- require("copilot").setup({
+--   suggestion = {
+--     auto_trigger = true,
+--     keymap = {
+--       accept = "<TAB>",
+--       reject = "<ESC>",
+--     }
+--   }
+-- })
 
 require("nvim-autopairs").setup()
 
@@ -294,7 +294,7 @@ require("bufferline").setup({
 -- LSPs stuff
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "solargraph", "rubocop", "biome", "eslint", "ts_ls" },
+  ensure_installed = { },
 })
 
 local cmp = require("cmp")
@@ -330,13 +330,13 @@ cmp.setup({
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
-lspconfig.lua_ls.setup { capabilities = capabilities }
-lspconfig.biome.setup { capabilities = capabilities }
-lspconfig.solargraph.setup { capabilities = capabilities }
-lspconfig.rubocop.setup { capabilities = capabilities }
-lspconfig.biome.setup { capabilities = capabilities }
-lspconfig.eslint.setup { capabilities = capabilities }
-lspconfig.ts_ls.setup { capabilities = capabilities }
+-- lspconfig.lua_ls.setup { capabilities = capabilities }
+-- lspconfig.biome.setup { capabilities = capabilities }
+-- lspconfig.solargraph.setup { capabilities = capabilities }
+-- lspconfig.rubocop.setup { capabilities = capabilities }
+-- lspconfig.biome.setup { capabilities = capabilities }
+-- lspconfig.eslint.setup { capabilities = capabilities }
+-- lspconfig.ts_ls.setup { capabilities = capabilities }
 lspconfig.ruby_lps = {}
 lspconfig.marksman = {}
 
