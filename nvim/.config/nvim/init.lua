@@ -12,9 +12,11 @@ Plug('sheerun/vim-polyglot')
 -- Plug('sickill/vim-monokai')
 Plug('Mofiqul/dracula.nvim')
 
--- change the default behavior of yank on deleting
 Plug('tpope/vim-repeat')
-Plug('svermeulen/vim-easyclip')
+
+  -- change the default behavior of yank on deleting
+-- Plug('svermeulen/vim-easyclip')
+Plug('svermeulen/vim-cutlass')
 
 -- Fancy icons
 Plug('nvim-tree/nvim-web-devicons')
