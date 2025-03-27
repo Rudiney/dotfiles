@@ -83,7 +83,7 @@ vim.opt.colorcolumn = "120"
 -- Display numbers and relative numbers
 vim.wo.number = true
 vim.wo.numberwidth = 5
--- vim.wo.rnu = true
+vim.wo.rnu = true
 
 -- Open new split panes to right and bottom, which feels more natural
 vim.opt.splitbelow = true
@@ -219,14 +219,15 @@ vim.keymap.set('n', '<Leader>f', Snacks.picker.grep, {})
 --- buffers with <Leader>+b
 vim.keymap.set('n', '<Leader>b', Snacks.picker.buffers, {})
 --- Git modified files with <Leader>+g
-vim.keymap.set('n', '<Leader>g', Snacks.picker.git_status, {})
+vim.keymap.set('n', '<Leader>gs', Snacks.picker.git_status, {})
 --- " to open registers
 vim.keymap.set('n', '"', Snacks.picker.registers, {})
 -- Marks with <Leader>+m
 vim.keymap.set('n', '<Leader>m', Snacks.picker.marks, {})
-
---Format code with <Leader>+p
--- vim.keymap.set('n', '<Leader>p', builtin.lsp_format, {})
+-- Show buffer diagnostics with <Leader>+d
+vim.keymap.set('n', '<Leader>d', Snacks.picker.diagnostics_buffer, {})
+-- Show all diagnostics with <Leader>+D
+vim.keymap.set('n', '<Leader>D', Snacks.picker.diagnostics, {})
 
 -- Open lazygit with <Leader>gg
 -- vim.keymap.set('n', '<Leader>gg', ':LazyGit<CR>', { silent = true, remap = false })
@@ -294,7 +295,7 @@ require("bufferline").setup({
 -- LSPs stuff
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { },
+  ensure_installed = { "lua_ls", "standardrb", "rubocop", "solargraph" },
 })
 
 local cmp = require("cmp")
@@ -330,11 +331,11 @@ cmp.setup({
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
--- lspconfig.lua_ls.setup { capabilities = capabilities }
+lspconfig.lua_ls.setup { capabilities = capabilities }
 -- lspconfig.biome.setup { capabilities = capabilities }
--- lspconfig.solargraph.setup { capabilities = capabilities }
--- lspconfig.rubocop.setup { capabilities = capabilities }
--- lspconfig.biome.setup { capabilities = capabilities }
+lspconfig.solargraph.setup { capabilities = capabilities }
+lspconfig.rubocop.setup { capabilities = capabilities }
+lspconfig.standardrb.setup { capabilities = capabilities }
 -- lspconfig.eslint.setup { capabilities = capabilities }
 -- lspconfig.ts_ls.setup { capabilities = capabilities }
 lspconfig.ruby_lps = {}
