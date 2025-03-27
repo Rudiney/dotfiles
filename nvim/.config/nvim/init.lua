@@ -14,7 +14,7 @@ Plug('Mofiqul/dracula.nvim')
 
 Plug('tpope/vim-repeat')
 
-  -- change the default behavior of yank on deleting
+-- change the default behavior of yank on deleting
 -- Plug('svermeulen/vim-easyclip')
 Plug('svermeulen/vim-cutlass')
 
@@ -62,6 +62,9 @@ vim.call('plug#end')
 -- remap leader to <Space>
 -- vim.keymap.set("n", " ", "<Nop>", { silent = true, remap = false })
 vim.g.mapleader = " "
+
+-- Disable Snacks animations
+vim.g.snacks_animate = false
 
 -- General settings
 vim.opt.encoding = "utf-8"
@@ -170,6 +173,9 @@ require("quicker").setup({
 require("tiny-glimmer").setup()
 
 require("snacks").setup({
+  bigfile = {},
+  input = {},
+  quickfile = {},
   explorer = {
     replace_netrw = true,
   },
