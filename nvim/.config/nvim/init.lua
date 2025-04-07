@@ -13,17 +13,21 @@ Plug('sheerun/vim-polyglot')
 Plug('Mofiqul/dracula.nvim')
 
 Plug('tpope/vim-repeat')
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
 -- change the default behavior of yank on deleting
 -- Plug('svermeulen/vim-easyclip')
 Plug('svermeulen/vim-cutlass')
 
+Plug('kdheepak/lazygit.nvim')
+
 -- Fancy icons
 Plug('nvim-tree/nvim-web-devicons')
+Plug('nvim-tree/nvim-tree.lua')
 
 -- telescope (file finder)
 Plug('nvim-lua/plenary.nvim')
-Plug('folke/snacks.nvim')
+Plug('ibhagwan/fzf-lua')
 
 -- Tpope's magic
 Plug('tpope/vim-sensible')
@@ -65,8 +69,9 @@ vim.call('plug#end')
 -- vim.keymap.set("n", " ", "<Nop>", { silent = true, remap = false })
 vim.g.mapleader = " "
 
--- Disable Snacks animations
-vim.g.snacks_animate = false
+-- Replace netrw for nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- General settings
 vim.opt.encoding = "utf-8"
@@ -152,6 +157,16 @@ require('dracula').setup({
 
 vim.cmd("colorscheme dracula")
 
+-- NvimTree
+require('nvim-tree').setup({
+  update_cwd = true,
+  actions = {
+    open_file = {
+      quit_on_open = true
+    }
+  }
+})
+
 --quicker
 require("quicker").setup({
   keys = {
@@ -174,76 +189,40 @@ require("quicker").setup({
 
 require("tiny-glimmer").setup()
 
-require("snacks").setup({
-  bigfile = {},
-  input = {},
-  quickfile = {},
-  explorer = {
-    replace_netrw = true,
-  },
-  -- config for all pickers
-  picker = {
-    hidden = true,
-    formatters = {
-      file = {
-        truncate = 100
-      }
-    },
-    win = {
-      input = {
-        keys = {
-          ["<c-t>"] = { "edit_tab", mode = { "i", "n" } },
-        }
-      }
-    },
-    sources = {
-      -- config for the explorer picker only
-      explorer = {
-        auto_close = true,
-        focus = "list",
-        win = {
-          list = {
-            keys = {
-              ["o"] = "confirm",
-              ["<c-o>"] = "explorer_open",
-              ["<c-t>"] = { "edit_tab", mode = { "i", "n" } },
-            }
-          }
-        }
-      },
-      files = {
-        hidden = true
-      }
-    }
-  }
-})
+FzfLua = require('fzf-lua')
+FzfLua.setup({ "hide" })
 
 -- Find current file in tree with <Leader>+n
-vim.keymap.set("n", "<Leader>n", Snacks.explorer.reveal, {})
+-- vim.keymap.set("n", "<Leader>n", Snacks.explorer.reveal, {})
+vim.keymap.set("n", "<Leader>n", ":NvimTreeFindFile<CR>", {})
 
 --- Find files with <Leader>+y
--- vim.keymap.set('n', '<Leader>y', Snacks.picker.files, {})
-vim.keymap.set('n', '<Leader>y', Snacks.picker.smart, {})
+vim.keymap.set('n', '<Leader>y', FzfLua.files, {})
 
 --- Live grep with <Leader>+f
-vim.keymap.set('n', '<Leader>f', Snacks.picker.grep, {})
--- Live grep in the current directory with <Leader>+F
+vim.keymap.set('n', '<Leader>f', FzfLua.live_grep, {})
+
 --- buffers with <Leader>+b
-vim.keymap.set('n', '<Leader>b', Snacks.picker.buffers, {})
+vim.keymap.set('n', '<Leader>b', FzfLua.buffers, {})
+
 --- Git modified files with <Leader>+g
-vim.keymap.set('n', '<Leader>gs', Snacks.picker.git_status, {})
+vim.keymap.set('n', '<Leader>gs', FzfLua.git_status, {})
+
 --- " to open registers
-vim.keymap.set('n', '"', Snacks.picker.registers, {})
+vim.keymap.set('n', '"', FzfLua.registers, {})
+
 -- Marks with <Leader>+m
-vim.keymap.set('n', '<Leader>m', Snacks.picker.marks, {})
+vim.keymap.set('n', '<Leader>m', FzfLua.marks, {})
+
 -- Show buffer diagnostics with <Leader>+d
-vim.keymap.set('n', '<Leader>d', Snacks.picker.diagnostics_buffer, {})
+vim.keymap.set('n', '<Leader>d', FzfLua.lsp_document_diagnostics, {})
+
 -- Show all diagnostics with <Leader>+D
-vim.keymap.set('n', '<Leader>D', Snacks.picker.diagnostics, {})
+vim.keymap.set('n', '<Leader>D', FzfLua.lsp_workspace_diagnostics, {})
 
 -- Open lazygit with <Leader>gg
--- vim.keymap.set('n', '<Leader>gg', ':LazyGit<CR>', { silent = true, remap = false })
-vim.keymap.set('n', '<Leader>gg', Snacks.lazygit.open, {})
+vim.keymap.set('n', '<Leader>gg', ':LazyGit<CR>', {})
+-- vim.keymap.set('n', '<Leader>gg', Snacks.lazygit.open, {})
 
 -- Status line
 require('lualine').setup({
