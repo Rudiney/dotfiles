@@ -54,6 +54,8 @@ Plug('dcampos/nvim-snippy')
 Plug('dcampos/cmp-snippy')
 Plug('hrsh7th/cmp-buffer')
 
+Plug('pechorin/any-jump.vim')
+
 Plug('stevearc/quicker.nvim')
 Plug('rachartier/tiny-glimmer.nvim')
 
@@ -220,7 +222,9 @@ require("snacks").setup({
 vim.keymap.set("n", "<Leader>n", Snacks.explorer.reveal, {})
 
 --- Find files with <Leader>+y
-vim.keymap.set('n', '<Leader>y', Snacks.picker.files, {})
+-- vim.keymap.set('n', '<Leader>y', Snacks.picker.files, {})
+vim.keymap.set('n', '<Leader>y', Snacks.picker.smart, {})
+
 --- Live grep with <Leader>+f
 vim.keymap.set('n', '<Leader>f', Snacks.picker.grep, {})
 -- Live grep in the current directory with <Leader>+F
@@ -303,7 +307,7 @@ require("bufferline").setup({
 -- LSPs stuff
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "standardrb", "rubocop", "solargraph" },
+  ensure_installed = { "lua_ls", "rubocop" },
 })
 
 local cmp = require("cmp")
@@ -341,9 +345,9 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
 lspconfig.lua_ls.setup { capabilities = capabilities }
 -- lspconfig.biome.setup { capabilities = capabilities }
-lspconfig.solargraph.setup { capabilities = capabilities }
+-- lspconfig.solargraph.setup { capabilities = capabilities }
 lspconfig.rubocop.setup { capabilities = capabilities }
-lspconfig.standardrb.setup { capabilities = capabilities }
+-- lspconfig.standardrb.setup { capabilities = capabilities }
 -- lspconfig.eslint.setup { capabilities = capabilities }
 -- lspconfig.ts_ls.setup { capabilities = capabilities }
 lspconfig.ruby_lps = {}
@@ -351,6 +355,7 @@ lspconfig.marksman = {}
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, {})
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
