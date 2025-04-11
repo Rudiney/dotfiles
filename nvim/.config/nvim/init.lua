@@ -12,7 +12,6 @@ Plug('sheerun/vim-polyglot')
 -- Plug('sickill/vim-monokai')
 Plug('Mofiqul/dracula.nvim')
 
-Plug('tpope/vim-repeat')
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
 -- change the default behavior of yank on deleting
@@ -30,6 +29,7 @@ Plug('nvim-lua/plenary.nvim')
 Plug('ibhagwan/fzf-lua')
 
 -- Tpope's magic
+Plug('tpope/vim-repeat')
 Plug('tpope/vim-sensible')
 Plug('tpope/vim-endwise')
 Plug('tpope/vim-surround')
@@ -42,7 +42,7 @@ Plug('markstory/vim-zoomwin')
 Plug('windwp/nvim-autopairs')
 -- Plug('zbirenbaum/copilot.lua')
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
-Plug('mattn/emmet-vim')
+Plug('kmoschcau/emmet-vim') -- fork of fixing an issue Plug('mattn/emmet-vim')
 Plug('vim-test/vim-test')
 
 -- Fancy tabs
@@ -132,6 +132,9 @@ vim.keymap.set({ "n", "v", "i" }, "<C-l>", "<C-w>l", {})
 
 -- Setting the test runner as 'm' to run the test with minitest
 vim.cmd("let g:test#ruby#minitest#executable = 'm'")
+-- use spring to run rspec specs
+vim.cmd("let test#ruby#rspec#executable = 'bin/spring rspec'")
+
 vim.keymap.set({ "n", "v", "i" }, "<F9>", ":TestFile <CR>", {})
 -- <F10> run the current test at the current line!
 vim.keymap.set({ "n", "v", "i" }, "<F10>", ":TestNearest <CR>", {})
