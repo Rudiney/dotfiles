@@ -41,6 +41,7 @@ Plug('nvim-lualine/lualine.nvim')
 Plug('markstory/vim-zoomwin')
 Plug('windwp/nvim-autopairs')
 -- Plug('zbirenbaum/copilot.lua')
+Plug('github/copilot.vim')
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
 Plug('kmoschcau/emmet-vim') -- fork of fixing an issue Plug('mattn/emmet-vim')
 Plug('vim-test/vim-test')
@@ -63,6 +64,9 @@ Plug('pechorin/any-jump.vim')
 Plug('stevearc/quicker.nvim')
 Plug('rachartier/tiny-glimmer.nvim')
 
+-- Multiple code formatters
+Plug('sbdchd/neoformat')
+
 vim.call('plug#end')
 
 -- remap leader to <Space>
@@ -72,6 +76,9 @@ vim.g.mapleader = " "
 -- Replace netrw for nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- https://prettier.io/docs/vim#neoformat
+vim.g.neoformat_try_node_exe = 1
 
 -- General settings
 vim.opt.encoding = "utf-8"
@@ -342,6 +349,7 @@ vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
 vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, {})
+vim.keymap.set('n', '<leader>P', ":Neoformat<CR>", {})
 -- show and hide diagnostics (linter errors, etc)
 vim.keymap.set('n', '<leader>dh', vim.diagnostic.hide, {})
 vim.keymap.set('n', '<leader>ds', vim.diagnostic.show, {})
