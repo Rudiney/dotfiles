@@ -42,7 +42,8 @@ Plug('markstory/vim-zoomwin')
 Plug('windwp/nvim-autopairs')
 -- Plug('zbirenbaum/copilot.lua')
 Plug('github/copilot.vim')
-Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
+-- Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
+Plug('brianhuster/live-preview.nvim')
 Plug('kmoschcau/emmet-vim') -- fork of fixing an issue Plug('mattn/emmet-vim')
 Plug('vim-test/vim-test')
 
@@ -296,7 +297,7 @@ require("bufferline").setup({
 -- LSPs stuff
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "rubocop" },
+  ensure_installed = { "lua_ls", "rubocop", "ruby_lsp" },
 })
 
 local cmp = require("cmp")
@@ -339,8 +340,20 @@ lspconfig.rubocop.setup { capabilities = capabilities }
 -- lspconfig.standardrb.setup { capabilities = capabilities }
 -- lspconfig.eslint.setup { capabilities = capabilities }
 -- lspconfig.ts_ls.setup { capabilities = capabilities }
-lspconfig.ruby_lps = {}
-lspconfig.marksman = {}
+lspconfig.ruby_lsp.setup {
+  capabilities = capabilities,
+  init_options = {
+    formatter = 'standard',
+    linters = { 'standard' },
+  },
+  addonSettings = {
+    ["Ruby LSP Rails"] = {
+      enablePendingMigrationsPrompt = false,
+    },
+  },
+}
+-- lspconfig.prettier.setup { capabilities = capabilities }
+lspconfig.sorbet.setup { capabilities = capabilities }
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
