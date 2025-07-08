@@ -201,7 +201,11 @@ require("quicker").setup({
 require("tiny-glimmer").setup()
 
 FzfLua = require('fzf-lua')
-FzfLua.setup({ "hide" })
+FzfLua.setup({
+  "hide",
+  files = { formatter = "path.filename_first" },
+  live_grep_native = { rg_opts = "--glob '!*.rbi'" }
+})
 
 -- Find current file in tree with <Leader>+n
 -- vim.keymap.set("n", "<Leader>n", Snacks.explorer.reveal, {})
@@ -211,7 +215,7 @@ vim.keymap.set("n", "<Leader>n", ":NvimTreeFindFile<CR>", {})
 vim.keymap.set('n', '<Leader>y', FzfLua.files, {})
 
 --- Live grep with <Leader>+f
-vim.keymap.set('n', '<Leader>f', FzfLua.live_grep, {})
+vim.keymap.set('n', '<Leader>f', FzfLua.live_grep_native, {})
 
 --- buffers with <Leader>+b
 vim.keymap.set('n', '<Leader>b', FzfLua.buffers, {})
