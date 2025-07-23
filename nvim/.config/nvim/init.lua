@@ -204,7 +204,7 @@ FzfLua = require('fzf-lua')
 FzfLua.setup({
   "hide",
   files = { formatter = "path.filename_first" },
-  live_grep_native = { rg_opts = "--glob '!*.rbi'" }
+  live_grep_glob = { rg_opts = "--glob '!*.rbi'" }
 })
 
 -- Find current file in tree with <Leader>+n
@@ -215,7 +215,7 @@ vim.keymap.set("n", "<Leader>n", ":NvimTreeFindFile<CR>", {})
 vim.keymap.set('n', '<Leader>y', FzfLua.files, {})
 
 --- Live grep with <Leader>+f
-vim.keymap.set('n', '<Leader>f', FzfLua.live_grep_native, {})
+vim.keymap.set('n', '<Leader>f', FzfLua.live_grep_glob, {})
 
 --- buffers with <Leader>+b
 vim.keymap.set('n', '<Leader>b', FzfLua.buffers, {})
@@ -247,7 +247,7 @@ require('lualine').setup({
       { 'mode', fmt = function(str) return str:sub(1, 1) end },
     },
     lualine_b = {
-      -- display the lasd folder of the current working directory:
+      -- display the last folder of the current working directory:
       function() return vim.fn.fnamemodify(vim.fn.getcwd(), ':t') end
 
       -- display only the first 9 letters of the branch
@@ -264,6 +264,17 @@ require('lualine').setup({
     lualine_x = { 'filetype' },
     lualine_y = {},
   },
+  inactive_sections = {
+    lualine_c = {
+      {
+        'filename',
+        file_status = true,
+        newfile_status = false,
+        path = 1,
+      }
+    },
+    lualine_x = {}
+  }
 })
 
 -- require("copilot").setup({
@@ -359,7 +370,7 @@ lspconfig.ruby_lsp.setup {
 -- lspconfig.prettier.setup { capabilities = capabilities }
 lspconfig.sorbet.setup { capabilities = capabilities }
 
-vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "single" }) end, {})
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, {})
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
@@ -368,6 +379,20 @@ vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
 vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, {})
 vim.keymap.set('n', '<leader>P', ":Neoformat<CR>", {})
 -- show and hide diagnostics (linter errors, etc)
+vim.diagnostic.config {
+  virtual_text = false,
+  float = {
+    header = false,
+    border = 'rounded',
+    focusable = true,
+  },
+}
 vim.keymap.set('n', '<leader>dh', vim.diagnostic.hide, {})
 vim.keymap.set('n', '<leader>ds', vim.diagnostic.show, {})
 vim.keymap.set('n', '<leader>k', vim.diagnostic.open_float, {})
+
+
+-- ERB tags shortcuts (this is bugged: https://github.com/windwp/nvim-autopairs/wiki/Endwise)
+vim.api.nvim_set_keymap('i', '<C-=>', '<%=  %><Left><Left><Left>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-->', '<%  %><Left><Left><Left>', { noremap = true })
+
