@@ -68,6 +68,9 @@ Plug('rachartier/tiny-glimmer.nvim')
 -- Multiple code formatters
 Plug('sbdchd/neoformat')
 
+-- Claude
+Plug('greggh/claude-code.nvim')
+
 vim.call('plug#end')
 
 -- remap leader to <Space>
@@ -396,3 +399,4 @@ vim.keymap.set('n', '<leader>k', vim.diagnostic.open_float, {})
 vim.api.nvim_set_keymap('i', '<C-=>', '<%=  %><Left><Left><Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-->', '<%  %><Left><Left><Left>', { noremap = true })
 
+require("claude-code").setup()
