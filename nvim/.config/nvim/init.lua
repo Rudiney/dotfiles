@@ -206,7 +206,7 @@ require("tiny-glimmer").setup()
 FzfLua = require('fzf-lua')
 FzfLua.setup({
   "hide",
-  files = { formatter = "path.filename_first" },
+  --files = { formatter = "path.filename_first" },
   live_grep_glob = { rg_opts = "--glob '!*.rbi'" }
 })
 
@@ -315,7 +315,7 @@ require("bufferline").setup({
 -- LSPs stuff
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "rubocop", "ruby_lsp" },
+  ensure_installed = { "lua_ls", "rubocop", "ruby_lsp", "ts_ls" },
 })
 
 local cmp = require("cmp")
@@ -357,16 +357,16 @@ lspconfig.lua_ls.setup { capabilities = capabilities }
 lspconfig.rubocop.setup { capabilities = capabilities }
 -- lspconfig.standardrb.setup { capabilities = capabilities }
 -- lspconfig.eslint.setup { capabilities = capabilities }
--- lspconfig.ts_ls.setup { capabilities = capabilities }
+lspconfig.ts_ls.setup { capabilities = capabilities }
 lspconfig.ruby_lsp.setup {
   capabilities = capabilities,
   init_options = {
     formatter = 'standard',
     linters = { 'standard' },
-  },
-  addonSettings = {
-    ["Ruby LSP Rails"] = {
-      enablePendingMigrationsPrompt = false,
+    addonSettings = {
+      ["Ruby LSP Rails"] = {
+        enablePendingMigrationsPrompt = false,
+      },
     },
   },
 }

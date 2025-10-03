@@ -1,0 +1,43 @@
+default_layout "top_bars"
+theme "dracula-custom"
+on_force_close "quit"
+default_mode "locked"
+
+ui {
+    pane_frames {
+        hide_session_name true
+        rounded_corners true
+    }
+}
+
+keybinds {
+    locked {
+        bind "†" { NewTab; } // Alt + t
+        bind "∂" { NewPane; } // Alt + d
+
+        bind "˙" { FocusPreviousPane; } // Alt + h
+        bind "¬" { FocusNextPane; } // Alt + l
+        bind "≈" "∑" { CloseFocus; } // Alt + x or w
+
+        bind "Alt Left" "“" { GoToPreviousTab; } // Alt + left or [
+        bind "Alt Right" "‘" { GoToNextTab; } // Alt + right or ]
+
+        bind "Ω" { ToggleFocusFullscreen; } // Alt + z
+    }
+}
+
+themes {
+   dracula-custom {
+        fg 248 248 242
+        bg 40 42 54
+        black 40 42 54
+        red 255 85 85
+        green 80 250 123
+        yellow 241 250 140
+        blue 98 114 164
+        magenta 255 121 198
+        cyan 139 233 253
+        white 255 255 255
+        orange 255 184 108
+    }
+}

@@ -3,4 +3,8 @@ layout {
     plugin location="compact-bar"
   }
   pane
+  // Display the status bar (with shortcuts)
+  // pane size=1 borderless=true {
+  //   plugin location="zellij:status-bar"
+  // }
 }
