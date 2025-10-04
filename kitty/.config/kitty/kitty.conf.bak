@@ -10,11 +10,10 @@ include current-theme.conf
 #: kitty has very powerful font management. You can configure
 #: individual font faces and even specify special fonts for particular
 #: characters.
-
-font_family      MonaspiceNe Nerd Font Mono
-bold_font        auto
-italic_font      auto
-bold_italic_font auto
+# font_family      MonaspiceNe Nerd Font Mono
+# bold_font        auto
+# italic_font      auto
+# bold_italic_font auto
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. The easiest way to select fonts is to run the `kitten
@@ -164,6 +163,8 @@ font_size 15.0
 #:     modify_font cell_width 80%
 #:     modify_font cell_height -2px
 #:     modify_font baseline 3
+
+# modify_font cell_height -3px
 
 #: Note that modifying the baseline will automatically adjust the
 #: underline and strikethrough positions by the same amount.
@@ -1334,7 +1335,7 @@ tab_bar_min_tabs 0
 #: can change the number of cells used by adding/removing entries to
 #: this list.
 
-tab_separator " |"
+# tab_separator " |"
 
 #: The separator between tabs in the tab bar when using separator as
 #: the tab_bar_style.
@@ -2388,6 +2389,8 @@ kitty_mod alt
 
 # map kitty_mod+enter new_window
 # map cmd+enter       new_window
+map alt+d launch --cwd=current
+map alt+n launch --cwd=current
 
 #::  You can open a new kitty window running an arbitrary program, for
 #::  example::
@@ -2528,17 +2531,19 @@ kitty_mod alt
 # map kitty_mod+right next_tab
 # map shift+cmd+]     next_tab
 # map ctrl+tab        next_tab
+map super+]        next_tab
 
 #: Previous tab
 
 # map kitty_mod+left previous_tab
 # map shift+cmd+[    previous_tab
 # map ctrl+shift+tab previous_tab
+map super+[          previous_tab
 
 #: New tab
 
 # map kitty_mod+t new_tab
-# map cmd+t       new_tab
+map cmd+t       new_tab_with_cwd
 
 #: Close tab
 
@@ -2928,3 +2933,11 @@ kitty_mod alt
 #: }}}
 
 #: }}}
+
+
+# BEGIN_KITTY_FONTS
+font_family      family="Hack Nerd Font Mono"
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS
