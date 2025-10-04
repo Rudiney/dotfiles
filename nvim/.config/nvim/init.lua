@@ -71,6 +71,10 @@ Plug('sbdchd/neoformat')
 -- Claude
 Plug('greggh/claude-code.nvim')
 
+Plug('imsnif/kdl.vim')
+
+-- Plug('ahkohd/buffer-sticks.nvim')
+
 vim.call('plug#end')
 
 -- remap leader to <Space>
@@ -206,8 +210,8 @@ require("tiny-glimmer").setup()
 FzfLua = require('fzf-lua')
 FzfLua.setup({
   "hide",
-  --files = { formatter = "path.filename_first" },
-  live_grep_glob = { rg_opts = "--glob '!*.rbi'" }
+  files = { rg_opts = "--sort=accessed --color=never --files --glob !*.rbi" },
+  live_grep = { rg_opts = "--glob '!*.rbi'" }
 })
 
 -- Find current file in tree with <Leader>+n
@@ -216,9 +220,11 @@ vim.keymap.set("n", "<Leader>n", ":NvimTreeFindFile<CR>", {})
 
 --- Find files with <Leader>+y
 vim.keymap.set('n', '<Leader>y', FzfLua.files, {})
+--- Find Recent files with <Leader>+Y
+vim.keymap.set('n', '<Leader>Y', FzfLua.oldfiles, {})
 
 --- Live grep with <Leader>+f
-vim.keymap.set('n', '<Leader>f', FzfLua.live_grep_glob, {})
+vim.keymap.set('n', '<Leader>f', FzfLua.live_grep, {})
 
 --- buffers with <Leader>+b
 vim.keymap.set('n', '<Leader>b', FzfLua.buffers, {})
@@ -361,6 +367,7 @@ lspconfig.ts_ls.setup { capabilities = capabilities }
 lspconfig.ruby_lsp.setup {
   capabilities = capabilities,
   init_options = {
+    enablePendingMigrationsPrompt = false,
     formatter = 'standard',
     linters = { 'standard' },
     addonSettings = {
@@ -371,7 +378,7 @@ lspconfig.ruby_lsp.setup {
   },
 }
 -- lspconfig.prettier.setup { capabilities = capabilities }
-lspconfig.sorbet.setup { capabilities = capabilities }
+-- lspconfig.sorbet.setup { capabilities = capabilities }
 
 vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "single" }) end, {})
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
@@ -400,3 +407,13 @@ vim.api.nvim_set_keymap('i', '<C-=>', '<%=  %><Left><Left><Left>', { noremap = t
 vim.api.nvim_set_keymap('i', '<C-->', '<%  %><Left><Left><Left>', { noremap = true })
 
 require("claude-code").setup()
+
+-- BufferSticks = require("buffer-sticks");
+-- BufferSticks.setup({
+--   highlights = {
+--     inactive = '#969696'
+--   }
+-- })
+-- BufferSticks.show()
+-- vim.keymap.set('n', '<Leader>b', BufferSticks.toggle, {})
+
