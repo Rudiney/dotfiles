@@ -54,3 +54,12 @@ vim.opt.undofile = true
 
 -- Set the default border for all floating windows
 vim.opt.winborder = 'rounded'
+
+vim.diagnostic.config {
+  virtual_text = false,
+  float = {
+    header = false,
+    border = 'rounded',
+    focusable = true,
+  },
+}
