@@ -29,4 +29,8 @@ return {
       require("nvim-autopairs").setup()
     end,
   },
+  {
+    'brianhuster/live-preview.nvim',
+    ft = { 'markdown', 'md' },
+  },
 }

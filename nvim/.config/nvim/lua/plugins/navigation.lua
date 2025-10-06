@@ -41,6 +41,9 @@ return {
   {
     'pechorin/any-jump.vim',
     cmd = { 'AnyJump', 'AnyJumpBack' },
+    keys = {
+      { '<Leader>j', ':AnyJump<CR>', desc = 'Go to definition (AnyJump)' },
+    },
   },
   {
     'markstory/vim-zoomwin',

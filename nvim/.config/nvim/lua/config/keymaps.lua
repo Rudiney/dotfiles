@@ -42,20 +42,24 @@ vim.keymap.set("n", "<Leader>R", ":!rubocop -A % <CR>")
 
 
 -- LSP:
-
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration)
-vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references)
+vim.keymap.set("n", "<leader>gr", vim.lsp.buf.definition)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)
 vim.keymap.set('n', '<leader>p', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>P', ":Neoformat<CR>")
 vim.keymap.set('n', '<leader>dh', vim.diagnostic.hide)
 vim.keymap.set('n', '<leader>ds', vim.diagnostic.show)
+vim.keymap.set('n', '<leader>dd', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set('n', '<leader>k', vim.diagnostic.open_float)
 
 -- ERB tags shortcuts (this is bugged: https://github.com/windwp/nvim-autopairs/wiki/Endwise)
 vim.keymap.set('i', '<C-=>', '<%=  %><Left><Left><Left>')
 vim.keymap.set('i', '<C-->', '<%  %><Left><Left><Left>')
+
+-- Clear highlights on search when pressing <Esc> in normal mode
+--  See `:help hlsearch`
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
