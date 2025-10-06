@@ -50,7 +50,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Save undo history
-vim.opt.undofile = true
+-- vim.opt.undofile = true
 
 -- Set the default border for all floating windows
 vim.opt.winborder = 'rounded'
