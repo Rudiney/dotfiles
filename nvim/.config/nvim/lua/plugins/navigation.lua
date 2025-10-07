@@ -30,13 +30,24 @@ return {
       { '<Leader>m', function() require('telescope.builtin').marks() end, desc = 'Find marks' },
       { '<Leader>d', function() require('telescope.builtin').diagnostics({ bufnr = 0 }) end, desc = 'Buffer diagnostics' },
       { '<Leader>D', function() require('telescope.builtin').diagnostics() end, desc = 'Workspace diagnostics' },
+      { '<Leader>Q', function() require('telescope.builtin').quickfix() end, desc = 'Open quickfix list' },
     },
     config = function()
+      local actions = require('telescope.actions')
       require('telescope').setup({
         defaults = {
           sorting_strategy = "ascending",
           layout_config = {
             prompt_position = "top",
+          },
+          mappings = {
+            -- In normal and insert mode, map <C-q> to send selected to quickfix list and open it
+            i = {
+              ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+            },
+            n = {
+              ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+            },
           },
         },
         pickers = {

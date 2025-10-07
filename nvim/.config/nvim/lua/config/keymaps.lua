@@ -30,16 +30,9 @@ vim.keymap.set({ "n", "v", "i" }, "<C-k>", "<C-w>k")
 vim.keymap.set({ "n", "v", "i" }, "<C-h>", "<C-w>h")
 vim.keymap.set({ "n", "v", "i" }, "<C-l>", "<C-w>l")
 
--- Find current file in tree with <Leader>+n (now handled by lazy.nvim keys)
-
 -- Rubocop shortcuts
 vim.keymap.set("n", "<Leader>r", ":!rubocop % <CR>")
 vim.keymap.set("n", "<Leader>R", ":!rubocop -A % <CR>")
-
--- Open lazygit with <Leader>gg (now handled by lazy.nvim keys)
-
--- Test Runner: (now handled by lazy.nvim in testing.lua)
-
 
 -- LSP:
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition)
