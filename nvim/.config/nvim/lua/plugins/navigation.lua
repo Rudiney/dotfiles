@@ -18,12 +18,17 @@ return {
   },
   {
     'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = { 
+      'nvim-lua/plenary.nvim', {
+        "nvim-telescope/telescope-live-grep-args.nvim" ,
+        version = "^1.1.0",
+      }
+    },
     cmd = 'Telescope',
     keys = {
       { '<Leader>y', function() require('telescope.builtin').find_files() end, desc = 'Find files' },
       { '<Leader>Y', function() require('telescope.builtin').oldfiles() end, desc = 'Find recent files' },
-      { '<Leader>f', function() require('telescope.builtin').live_grep() end, desc = 'Live grep' },
+      { '<Leader>f', function() require('telescope').extensions.live_grep_args.live_grep_args() end, desc = 'Live grep' },
       { '<Leader>b', function() require('telescope.builtin').buffers() end, desc = 'Find buffers' },
       { '<Leader>gs', function() require('telescope.builtin').git_status() end, desc = 'Git status' },
       { '"', function() require('telescope.builtin').registers() end, desc = 'Open registers' },
@@ -34,7 +39,8 @@ return {
     },
     config = function()
       local actions = require('telescope.actions')
-      require('telescope').setup({
+      local telescope = require("telescope")
+      telescope.setup({
         defaults = {
           sorting_strategy = "ascending",
           layout_config = {
@@ -56,6 +62,8 @@ return {
           },
         },
       })
+
+      telescope.load_extension("live_grep_args")
     end,
   },
   {
