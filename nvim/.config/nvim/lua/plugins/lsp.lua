@@ -83,7 +83,8 @@ return {
           },
         },
 
-        tailwindcss = {}
+        tailwindcss = {},
+        biome = {},
       }
 
       -- Ensure the servers and tools above are installed

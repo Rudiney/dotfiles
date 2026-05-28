@@ -5,6 +5,12 @@ return {
     keys = {
       { '<Leader>gg', ':LazyGit<CR>', desc = 'Open LazyGit' },
     },
+    init = function()
+      -- Load the nvim-scoped lazygit config (editPreset: nvim-remote) so files
+      -- opened in lazygit (`e`) edit in THIS nvim session, not a nested nvim.
+      -- The spawned lazygit terminal inherits this env var.
+      vim.env.LG_CONFIG_FILE = vim.fn.expand('~/.config/lazygit/config.yml')
+    end,
   },
   {
     'vim-test/vim-test',

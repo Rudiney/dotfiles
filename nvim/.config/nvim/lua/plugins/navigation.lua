@@ -40,6 +40,7 @@ return {
     config = function()
       local actions = require('telescope.actions')
       local telescope = require("telescope")
+
       telescope.setup({
         defaults = {
           sorting_strategy = "ascending",
@@ -47,11 +48,15 @@ return {
             prompt_position = "top",
           },
           mappings = {
-            -- In normal and insert mode, map <C-q> to send selected to quickfix list and open it
             i = {
+              -- map <C-q> to send selected to quickfix list and open it
               ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              -- navigate throught history for commands
+              ["<C-Down>"] = actions.cycle_history_next,
+              ["<C-Up>"] = actions.cycle_history_prev,
             },
             n = {
+              -- map <C-q> to send selected to quickfix list and open it
               ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
             },
           },

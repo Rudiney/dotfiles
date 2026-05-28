@@ -1,0 +1,7 @@
+# Loaded only when lazygit is launched from inside nvim
+# (nvim sets LG_CONFIG_FILE -> this file). See dotfiles/nvim tools.lua.
+#
+# nvim-remote: edit files in the PARENT nvim session via its $NVIM socket
+# instead of spawning a nested nvim inside the lazygit terminal.
+os:
+  editPreset: 'nvim-remote'

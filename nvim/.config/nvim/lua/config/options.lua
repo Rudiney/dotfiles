@@ -10,6 +10,7 @@ vim.opt.encoding = "utf-8"
 vim.opt.ruler = true
 vim.opt.showcmd = false
 vim.opt.wrap = false
+vim.opt.wrapmargin = 0
 vim.opt.shiftround = true
 vim.opt.clipboard = "unnamed"
 vim.opt.termguicolors = true
@@ -25,7 +26,6 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Drawn a line at 120 character mark
-vim.opt.textwidth = 120
 vim.opt.colorcolumn = "120"
 
 -- Display numbers and relative numbers

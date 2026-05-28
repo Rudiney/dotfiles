@@ -15,19 +15,19 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Setup lazyj.nvim
+-- Setup lazy.nvim
 require("lazy").setup({
-  require('plugins/dependencies'),
-  require('plugins/ui'),
-  require('plugins/tools'),
-  require('plugins/editing'),
-  require('plugins/syntax'),
-  require('plugins/colorscheme'),
-  require('plugins/ai'),
-  require('plugins/lsp'),
-  require('plugins/completion'),
-  require('plugins/navigation'),
-  require('plugins/ruby'),
+  require("plugins/dependencies"),
+  require("plugins/ui"),
+  require("plugins/tools"),
+  require("plugins/editing"),
+  require("plugins/syntax"),
+  require("plugins/colorscheme"),
+  require("plugins/ai"),
+  require("plugins/lsp"),
+  require("plugins/completion"),
+  require("plugins/navigation"),
+  require("plugins/ruby"),
 }, {
   -- automatically check for plugin updates
   checker = { enabled = true },
