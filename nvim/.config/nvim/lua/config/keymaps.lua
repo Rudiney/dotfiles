@@ -8,6 +8,13 @@ vim.keymap.set("n", "<Leader>q", ":q<CR>")
 -- Open a vsplit with <Leader>+t
 vim.keymap.set("n", "<Leader>t", ":vsp<CR>")
 
+-- Copy relative path of current buffer to clipboard with <Leader>+x
+vim.keymap.set("n", "<Leader>x", function()
+  local path = vim.fn.expand("%:.")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied: " .. path)
+end, { desc = "Copy relative path to clipboard" })
+
 -- Move a line down with option + j
 vim.keymap.set("n", "∆", ":m .+1<CR>==")
 vim.keymap.set("i", "∆", "<Esc>:m .+1<CR>==gi")
